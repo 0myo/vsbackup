@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<script> 
+
+//JSON.parse사용에 쓰는 문자열은 밖이 싱글('') 안이 더블("")이어야 한다.
+var v_objStr = '{"name":"한태훈","age":"100"}';  //문자열(형태가 JSON선언문법과 일치)
+var v_ovj = JSON.parse(v_objStr);   //문자열이 객체 표현을 담고 있다면 객체로 변환
+
+alert(v_ovj.name); //
+
+/* var aaa = "hi";
+var myObj = {
+    //aaa:"안녕"  //속성명은 자동으로 문자열 처리가 됨 = 변수가 들어가지 못함
+    ["aaa"]:"하이루",
+    ["0"]:"하이루"
+} 
+*/
+
+/* 
+var v_ovjs3 = {};
+v_ovjs3.hi = "안녕";
+delete v_ovjs3.hi;  //속성 삭제, 잘 쓰진 않고 존재하는 정도
+alert(v_ovjs3.hi);
+ */
+
+/*  
+var v_ovjs4 = {
+    name:"제니",
+    age: 30
+}
+
+v_ovjs4 = {};               //memory leak(메모리 누수)
+v_ovjs4.hi = "뷔";
+ */
+
+//alert(myObj[0]);         // script에서 변수명은 영문자 또는 _, $로만 시작할 수 있다. 배열로 표기하면 가능
+//alert(myObj["aaa"]);    //JSON은 속성명의 배열식 선언과 접근을 허용함
+
+//JSON (JavaScript Object Notation 자바스크립트 객체 표기법)
+//XML(안쓰게 됨), CSV(COmma Separated Value)
+/*
+    이름, 나이, 별명
+    김성겸, 100, 엑셀
+*/
+
+/*
+var v_ovj = {
+    name:"장재훈",
+    style:"프론트스타일"
+}
+*/
+
+var v_ovj = {};     //new Object();  [] => new Array(),  // => new RegExp()
+v_ovj.name="장재훈";
+v_ovj.style="프론트스타일"
+
+</script>

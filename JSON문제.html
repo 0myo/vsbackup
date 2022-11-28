@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <div id="disp"></div>
+</body>
+<script>
+    var jikwons = [
+        {name:"로제", code:"P100"},
+        {name:"제니", code:"P200"},
+        {name:"리사", code:"P200"},
+        {name:"뷔", code:"P300"},
+        {name:"제이홉", code:"P200"},
+        {name:"정국", code:"P400"},
+        {name:"지민", code:"P100"}
+    ];
+
+    var positions = {
+        "P100": "사장",
+        "P200": "전무",
+        "P300": "상무",
+        "P400": "사원"
+    };
+
+    //위 2개의 데이터를 가지고 아래와 같은 형식의 테이블을 di=disp에 출력하시오
+    // 순번     이름    직위
+    //  1       로제    사장
+    //  1       제니    전무
+    //  .....
+
+    var v_tblStr = "<table border=1>"; //table은 문자열 더하기를 많이 사용함
+    v_tblStr += "<tr><th>순번</th><th>이름</th><th>직위</th>";
+    for (var i = 0; i < jikwons.length; i++) {
+        v_tblStr += "<tr>";
+        v_tblStr += "<td>" + i + "</td>";
+        v_tblStr += "<td>" + jikwons[i].name + "</td>";
+        // JSON 배열식 접근법(연관배열이라고도 부름)을 잘 써야 간단하게 해결 가능
+        v_tblStr += "<td>" + positions[jikwons[i].code] + "</td>";
+        v_tblStr += "</tr>";
+    }
+    v_tblStr += "</table>";
+    document.querySelector("#disp").innerHTML = v_tblStr;
+</script>
+</body>
+</html>

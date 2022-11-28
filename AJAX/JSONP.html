@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+    <script>
+        //플리커 Open Api 데이터가 JavaScript 함수명 호출 방식으로 되어있어 미리 호출할 함수를 만들어 둠
+        function jsonFlickrFeed(p_arg){
+            v_disp.innerHTML = "";
+            var v_items = p_arg.items;
+            for(var i=0; i<v_items.length; i++){
+                var v_img = document.createElement("img"); //메모리에 img 태그 만들기
+                v_img.src = v_items[i].media.m; //플리커에서 받은 이미지 URL
+                v_disp.appendChild(v_img);
+            }
+            //console.log(p_arg); //항상 누르는 값을 확인해야 한다.
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="schText" value="">
+    <input type="button" value="Search" onclick="f_imgSch()">
+    <div id="disp"></div>
+    <script>
+        var v_schText = document.querySelector("#schText");
+        var v_disp = document.querySelector("#disp");
+        var v_preURL = "https://www.flickr.com/services/feeds/photos_public.gne?tags=";
+        var v_postURL = "&format=json";
+        function f_imgSch(){
+            var v_schURL = v_preURL + v_schText.value + v_postURL;  // 요청 URL 만들기
+            var v_script = document.createElement("script"); //script 태그 만들기
+            v_script.src = v_schURL;
+            document.head.appendChild(v_script);  // head와 body는 id가 필요없음 (문서에 오직 1개만 존재)
+        }
+    </script>
+    <!-- Origin(출처) = 프로토콜 + 도메인or서버명 + 포트번호로 구성되는다 하나라도 다르면 다른 오리진이다. -->
+    <!--JSONP(JSON PADDING) 형식, 최대 장점은 Cross-Origin으로 제약사항이 없다.-->
+    <script src="https://www.flickr.com/services/feeds/photos_public.gne?tags=뉴진스&format=json"></script>
+</body>
+</html>

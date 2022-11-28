@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+    <div id="disp" style="text-align: center;"></div>
+    <input type="button" value="에이잭스" onclick="f_ajax()">
+</body>
+<script>
+    function f_ajax() {
+        var v_ajax = new XMLHttpRequest(); // 요건 항상 지역변수로..
+        v_ajax.open("get", "data.csv", true); 
+        v_ajax.onreadystatechange = function () {  
+            if (v_ajax.readyState == 4 && v_ajax.status == 200) { 
+                var v_receiveData = v_ajax.responseText 
+                console.log(v_receiveData);
+                var v_lines = v_receiveData.split("\n");   // 라인별 문자열
+                var v_headers = v_lines[0].split(",");     // 컬럼명(header)을 위해 미리 split
+
+                var v_tblStr = "<table border=1>";
+                v_tblStr += "<tr><th>" + v_headers[0] + 
+                             "</th><th>" + v_headers[1] + 
+                             "</th><th>" + v_headers[2] + "</th><tr>";    
+
+                for(var i=1; i< v_lines.length; i++){
+                    var v_values = v_lines[i].split(",");
+                    v_tblStr += "<tr>";
+                    v_tblStr += "<td>" + v_values[0] + "</td>";
+                    v_tblStr += "<td>" + v_values[1] + "</td>";
+                    v_tblStr += "<td>" + v_values[2] + "</td>";
+                    v_tblStr += "</tr>";
+                }
+                v_tblStr += "</table>";
+                document.querySelector("#disp").innerHTML += v_tblStr;
+            }
+        }
+        v_ajax.send(); 
+    }
+
+/* 
+2000년대 초 ajax(Asynchonouse JavaScript Xml)을 아무도 믿지 않았지만
+구글이 gmail과 Map을 비동기 Ajax로 구현해내면서 개발자 필수 사항이 되고
+javascript가 하나의 언어로 자리잡는데 기여했다. 
+*/
+
+//전역변수로 쓰면 안됨 
+var v_ajax = new XMLHttpRequest();             //대신 통신해줄 심부름꾼 생성
+//v_ajax.open("메소드", "url", "비동기여부");
+v_ajax.open("get", "data.html", "true");       //시킬 일 지정
+v_ajax.onreadystatechange = function() {       //통신해줄 심부름꾼에게 변화가 발생하면 이벤트 발생
+                                               //일이 끝난는지가 중요
+    //alert(v_ajax.readyState);                //실제로 이벤트가 여러번 발생, 준비, 전송, 받기등
+    if (v_ajax.readyState == 4 && v_ajax.status == 200) { //일이 끝났다고 함 (확인 필요) //서버 응답코드가 200이면 성공
+    var v_receiveData = v_ajax.responseText             //서버가 준 내용 
+    document.querySelector("#disp").innerHTML = v_receiveData; 
+    }
+}
+v_ajax.send();                                 //시킨일을 함
+
+alert(v_ajax.responseText);                    //? 값이 없음(비동기), 비동기 여부 확인 가능
+
+</script> 

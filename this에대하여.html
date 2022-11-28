@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    //this가 어렵다고?
+    function f_check(){
+        console.log(this); //? windiw
+    }
+    windiw.f_check();
+
+    var 장재훈 = {name: "재훈", main:"인프라"}
+
+    장재훈.메소드 = f_check();
+    장재훈.메소드(); //? 여기서의 this?
+    //메소드 앞 객체를 this값이 따라 간다는 것을 알 수 있다.
+    //하지만 불편하고 애매하다. 매번 소스를 누르고 확인해야함.
+
+    //call, apply, bind가 /
+
+</script>

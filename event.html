@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<style>
+    div {
+        border:2px solid pink;
+        color:black;
+    }
+    #hal {
+        width:300px;
+        height:300px;
+    }
+    #mom {
+        position: relative;
+        left:50px;
+        top:50px;
+        width:200px;
+        height:200px;
+    }
+    #na {
+        position: relative;
+        left:50px;
+        top:50px;
+        width:100px;
+        height:100px;
+    }
+</style>
+<body>
+    <div id="hal" onclick="f_hal()"> 할머닝
+        <div id="mom" onclick="f_mom()"> 엄망
+            <div id="na" onclick="f_na()">건영건설</div>
+        </div>
+    </div>
+<script>
+    function f_na(){
+        alert("나야 나 건영이")
+    }
+    function f_mom(){
+        alert("난 외계인 엄마당");
+    }
+    function f_hal(){
+        alert("할머니 안농");
+    }
+</script>
+</body>

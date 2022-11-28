@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+
+    //매개변수에 무슨 데이터형이 와도 되는 것처럼 return 뒤에 뭐가 와도 괜찮음
+    var aaa= "아뵤"
+    var bbb;
+    var fbi = function (){
+        if(aaa="천재인듯"){
+            return "레알 천재인듯"
+        } //return을 잘 쓰면 else가 필요없어서 가독성이 더 좋음
+        return "그냥 천재인듯";
+    }
+    alert(fbi());
+
+    /* 
+    function f_gy(){
+        //alert("난 최고야 그게 재훈이야");
+        //return "최고인 나";         //함수 끝에 return이 생략되어 있음
+        return function(){
+            return "헉 헷갈려";
+        }
+    } 
+    alert(f_gy()); //? undefined
+    */
+
+    //스크립트는 매개변수(parameter)로 머든 넘길 수 있다.
+
+    function f_merong(p_arg1) {
+        alert(p_arg1());          //함수 포인터(FP), 재훈, undefined
+    }
+    
+    /* 
+    p_arg1 = function(){
+        alert("나 재훈이야");
+    } 
+    */
+
+    f_merong(function(){
+        alert("나 재훈이야");
+    });
+    
+    /*   
+    f_merong("메롱");
+    f_merong( 272);
+    f_merong([1,2,3]);
+    f_merong({name:"장재훈"})
+    f_merong(function(){
+        alert("나 장재훈이야");
+    }) 
+    */
+</script>
